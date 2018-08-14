@@ -1,7 +1,7 @@
 package vn.linh.imageapp.data.source.remote
 
 import io.reactivex.Single
-import vn.linh.imageapp.data.source.remote.api.PhotoApi
+import vn.linh.imageapp.data.source.remote.api.AuthImageApi
 import vn.linh.imageapp.data.source.remote.api.request.LoginRequest
 import vn.linh.imageapp.data.source.remote.api.response.LoginResponse
 import javax.inject.Inject
@@ -11,9 +11,9 @@ import javax.inject.Inject
  * phanvanlinh.94vn@gmail.com
  */
 
-class UserRemoteDataSource @Inject constructor(private val photoApi: PhotoApi) {
+class UserRemoteDataSource @Inject constructor(private val authImageApi: AuthImageApi) {
 
     fun login(userName: String): Single<LoginResponse> {
-        return photoApi.login(LoginRequest(userName).get())
+        return authImageApi.login(LoginRequest(userName).get())
     }
 }

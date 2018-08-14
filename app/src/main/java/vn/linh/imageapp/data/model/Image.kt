@@ -1,7 +1,12 @@
 package vn.linh.imageapp.data.model
 
+import android.content.Context
 import android.os.Parcelable
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import vn.linh.imageapp.R
+import vn.linh.imageapp.utils.common.toTimeString
 import java.util.*
 
 /**
@@ -11,8 +16,18 @@ import java.util.*
 
 @Parcelize
 data class Image(
+        @Expose
         val title: String,
+        @Expose
         val description: String,
-        val createdDate: Date,
+        @Expose
+        val datetime: Long,
+        @Expose
+        @SerializedName("link")
         val thumbnail: String
-) : Parcelable
+) : Parcelable {
+
+    fun getDisplayTime(context: Context): String? {
+        return datetime.toTimeString(context.getString(R.string.format_yyyy_MM_dd_HH_mm_ss))
+    }
+}

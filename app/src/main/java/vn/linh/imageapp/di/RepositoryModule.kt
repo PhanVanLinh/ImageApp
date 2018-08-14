@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import vn.linh.imageapp.data.source.ImageRepository
 import vn.linh.imageapp.data.source.UserRepository
-import vn.linh.imageapp.data.source.local.ImageLocalDatasource
+import vn.linh.imageapp.data.source.local.ImageLocalDataSource
 import vn.linh.imageapp.data.source.local.UserLocalDataSource
 import vn.linh.imageapp.data.source.remote.ImageRemoteDataSource
 import vn.linh.imageapp.data.source.remote.UserRemoteDataSource
@@ -20,7 +20,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun providePhotoRepository(localDataSource: ImageLocalDatasource, remoteDataSource: ImageRemoteDataSource): ImageRepository {
+    fun providePhotoRepository(localDataSource: ImageLocalDataSource, remoteDataSource: ImageRemoteDataSource): ImageRepository {
         return ImageRepository(localDataSource, remoteDataSource)
     }
 

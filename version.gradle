@@ -9,6 +9,6 @@ ext {
     okhttp_logging_interceptor_version = '3.9.1'
     rxjava_version = '2.1.10'
     rxandroid_version = '2.0.2'
-    glide_version = '3.8.0'
+    picasso_version = '2.71828'
     room_version = '1.1.1'
 }

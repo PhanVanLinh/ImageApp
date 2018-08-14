@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="format_yyyy_MM_dd_HH_mm_ss">yyyy-MM-dd\nHH:mm:ss</string>
+</resources>

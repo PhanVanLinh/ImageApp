@@ -20,8 +20,14 @@ class UserRepository(private val userRemoteDataSource: UserRemoteDataSource, pri
         }
     }
 
+    fun getAccessToken(): AccessToken? {
+        return userLocalDataSource.getAccessToken()
+    }
+
     private fun isAccessTokenNotExpired(): Boolean {
         val accessToken = userLocalDataSource.getAccessToken()
         return accessToken != null && !accessToken.isExpired()
     }
+
+
 }

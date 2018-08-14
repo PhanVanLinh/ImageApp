@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/dp_2"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/image_thumbs"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="2:1"
+        android:background="@color/black"
+        app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription"
-        tools:src="@mipmap/ic_launcher"/>
+        tools:src="@drawable/image_placeholder" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black_trans_50"
         android:padding="@dimen/dp_8"
-        app:layout_constraintBottom_toBottomOf="@+id/image_thumbs"
-        >
+        app:layout_constraintBottom_toBottomOf="@+id/image_thumbs">
 
         <TextView
             android:id="@+id/text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/text_created_date"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_20"
-            tools:text="Title"
-            />
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/text_description"
@@ -43,10 +44,11 @@
             android:layout_alignStart="@+id/text_title"
             android:layout_below="@+id/text_title"
             android:layout_marginTop="@dimen/dp_4"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_14"
-            tools:text="description"
-            />
+            tools:text="description" />
 
         <TextView
             android:id="@+id/text_created_date"
@@ -54,9 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/dp_8"
             android:textColor="@color/white"
-            tools:text="2018"
-            />
+            tools:text="2018" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

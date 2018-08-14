@@ -11,14 +11,16 @@ import android.widget.TextView
 
 import vn.linh.imageapp.R
 import vn.linh.imageapp.data.model.Image
+import vn.linh.imageapp.utils.common.ImageLoader
+import javax.inject.Inject
 
-class ImageAdapter(private val onImageClickedListener: OnImageClickedListener) : ListAdapter<Image, ImageAdapter.ContactViewHolder>(DIFF_CALLBACK) {
+class ImageAdapter(private val onImageClickedListener: OnImageClickedListener, private val imageLoader: ImageLoader) : ListAdapter<Image, ImageAdapter.ContactViewHolder>(DIFF_CALLBACK) {
     var TAG = javaClass.simpleName
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_image,
                 parent, false)
-        return ContactViewHolder(itemView, onImageClickedListener)
+        return ContactViewHolder(itemView, onImageClickedListener, imageLoader)
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
@@ -26,7 +28,7 @@ class ImageAdapter(private val onImageClickedListener: OnImageClickedListener) :
         holder.bind(image)
     }
 
-    class ContactViewHolder(itemView: View, onImageClickedListener: OnImageClickedListener) : RecyclerView.ViewHolder(itemView) {
+    class ContactViewHolder(itemView: View, onImageClickedListener: OnImageClickedListener, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView) {
         var tvTitle: TextView = itemView.findViewById(R.id.text_title)
         var tvDescription: TextView = itemView.findViewById(R.id.text_description)
         var tvCreatedDate: TextView = itemView.findViewById(R.id.text_created_date)
@@ -45,7 +47,8 @@ class ImageAdapter(private val onImageClickedListener: OnImageClickedListener) :
             this.image = image
             tvTitle.text = image.title
             tvDescription.text = image.description
-            tvCreatedDate.text = image.createdDate.toString()
+            tvCreatedDate.text = image.getDisplayTime(itemView.context)
+            imageLoader.loadImage(image.thumbnail, R.drawable.image_placeholder, ivThumb)
         }
     }
 

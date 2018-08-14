@@ -38,7 +38,7 @@ class ImageDetailActivity : BaseActivity() {
         image?.let {
             tvTitle.text = it.title
             tvDescription.text = it.description
-            tvCreatedDate.text = it.createdDate.toString()
+            tvCreatedDate.text = it.datetime.toString()
         }
     }
 }

@@ -11,7 +11,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.linh.imageapp.BuildConfig
-import vn.linh.imageapp.data.source.remote.api.PhotoApi
+import vn.linh.imageapp.data.model.AccessToken
+import vn.linh.imageapp.data.source.UserRepository
+import vn.linh.imageapp.data.source.local.api.SharedPrefApi
+import vn.linh.imageapp.data.source.remote.api.AuthImageApi
 import vn.linh.imageapp.data.source.remote.api.interceptor.AuthInterceptor
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
@@ -36,8 +39,9 @@ class NetworkModule {
     @Singleton
     @Provides
     @Named("auth")
-    fun provideAuthInterceptor(): Interceptor {
-        return AuthInterceptor()
+    fun provideAuthInterceptor(sharedPrefApi: SharedPrefApi): Interceptor {
+        val accessToken = sharedPrefApi.get(SharedPrefApi.ACCESS_TOKEN, AccessToken::class)
+        return AuthInterceptor(accessToken)
     }
 
     @Singleton
@@ -56,11 +60,11 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providePhotoApi(client: OkHttpClient, gson: Gson): PhotoApi {
+    fun providePhotoApi(client: OkHttpClient, gson: Gson): AuthImageApi {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build().create(PhotoApi::class.java)
+                .build().create(AuthImageApi::class.java)
     }
 }

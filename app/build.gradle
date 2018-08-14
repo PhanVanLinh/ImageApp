@@ -60,8 +60,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
-    // Glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
+    // picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 
     // Room
     implementation "android.arch.persistence.room:rxjava2:$room_version"

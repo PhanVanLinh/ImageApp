@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import vn.linh.imageapp.data.model.Image
 import vn.linh.imageapp.data.source.remote.api.request.LoginRequest
+import vn.linh.imageapp.data.source.remote.api.response.GetImageResponse
 import vn.linh.imageapp.data.source.remote.api.response.LoginResponse
 
 /**
@@ -14,11 +15,11 @@ import vn.linh.imageapp.data.source.remote.api.response.LoginResponse
  * phanvanlinh.94vn@gmail.com
  */
 
-interface PhotoApi {
+interface AuthImageApi {
 
     @POST("/login")
     fun login(@Body userName: RequestBody): Single<LoginResponse>
 
     @GET("/image")
-    fun getImage(): Single<List<Image>>
+    fun getImage(): Single<GetImageResponse>
 }

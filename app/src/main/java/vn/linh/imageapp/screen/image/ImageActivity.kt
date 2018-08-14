@@ -8,6 +8,7 @@ import vn.linh.imageapp.data.model.Image
 import vn.linh.imageapp.navigation.Navigator
 import vn.linh.imageapp.screen.BaseActivity
 import vn.linh.imageapp.screen.image.adapter.ImageAdapter
+import vn.linh.imageapp.utils.common.ImageLoader
 import java.util.*
 import javax.inject.Inject
 
@@ -19,13 +20,19 @@ class ImageActivity : BaseActivity(), ImageContract.View {
     @Inject
     lateinit var presenter: ImageContract.Presenter
 
+    @Inject
+    lateinit var imageLoader: ImageLoader
+
+    @Inject
+    lateinit var navigator: Navigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
         initView()
         initRecyclerView()
 
-        login()
+        getImage()
     }
 
     override fun initView() {
@@ -37,24 +44,22 @@ class ImageActivity : BaseActivity(), ImageContract.View {
         rvImage.layoutManager = layoutManager
         imageAdapter = ImageAdapter(object : ImageAdapter.OnImageClickedListener {
             override fun onImageClicked(image: Image) {
-                Navigator().startImageDetail(this@ImageActivity, image)
+                navigator.startImageDetail(this@ImageActivity, image)
             }
-        })
+        }, imageLoader)
 
         rvImage.adapter = imageAdapter
-        imageAdapter?.submitList(getData())
+      //  imageAdapter?.submitList(getData())
     }
 
-    fun login() {
-        presenter.login("wizeline")
+    override fun onGetImageSuccess(images: List<Image>) {
+        imageAdapter?.submitList(images)
     }
 
-    fun getData(): MutableList<Image> {
-        val list = mutableListOf<Image>()
+    override fun onGetImageFailed(exception: Throwable) {
+    }
 
-        list.add(Image("1", "2", Date(), ""))
-        list.add(Image("1", "2", Date(), ""))
-        list.add(Image("1", "2", Date(), ""))
-        return list
+    fun getImage() {
+        presenter.getImage()
     }
 }

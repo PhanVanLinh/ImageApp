@@ -13,4 +13,7 @@ abstract class ImageModule {
 
     @Binds
     abstract fun bindImagePresenter(imagePresenter: ImagePresenter): ImageContract.Presenter
+
+    @Binds
+    abstract fun bindImageView(view: ImageActivity): ImageContract.View
 }

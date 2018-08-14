@@ -1,6 +1,8 @@
 package vn.linh.imageapp.data.source
 
-import vn.linh.imageapp.data.source.local.ImageLocalDatasource
+import io.reactivex.Single
+import vn.linh.imageapp.data.model.Image
+import vn.linh.imageapp.data.source.local.ImageLocalDataSource
 import vn.linh.imageapp.data.source.remote.ImageRemoteDataSource
 
 /**
@@ -8,9 +10,12 @@ import vn.linh.imageapp.data.source.remote.ImageRemoteDataSource
  * phanvanlinh.94vn@gmail.com
  */
 
-class ImageRepository(val localDatasource: ImageLocalDatasource,
-                      val remoteDataSource: ImageRemoteDataSource) {
+class ImageRepository(private val localDataSource: ImageLocalDataSource,
+                      private val remoteDataSource: ImageRemoteDataSource) {
 
-
-
+    fun getImage(): Single<List<Image>> {
+        return remoteDataSource.getImage().map {
+            it.images
+        }
+    }
 }
