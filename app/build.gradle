@@ -28,7 +28,10 @@ android {
 
     applicationVariants.all { variant ->
         def BASE_URL = "https://wzimgur.herokuapp.com"
+        def DEFAULT_USER = "wizeline"
+
         variant.buildConfigField "String", "BASE_URL", "\"${BASE_URL}\""
+        variant.buildConfigField "String", "DEFAULT_USER", "\"${DEFAULT_USER}\""
     }
 
     androidExtensions {
@@ -38,7 +41,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Appcompat
     implementation "com.android.support:appcompat-v7:$appCompat_version"

@@ -11,9 +11,9 @@ import javax.inject.Inject
  * phanvanlinh.94vn@gmail.com
  */
 
-class UserRemoteDataSource @Inject constructor(val photoApi: PhotoApi) {
+class UserRemoteDataSource @Inject constructor(private val photoApi: PhotoApi) {
 
     fun login(userName: String): Single<LoginResponse> {
-        return photoApi.login(LoginRequest(userName))
+        return photoApi.login(LoginRequest(userName).get())
     }
 }

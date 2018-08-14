@@ -1,4 +1,4 @@
-package vn.linh.imageapp.screen.base
+package vn.linh.imageapp.screen
 
 import dagger.android.support.DaggerAppCompatActivity
 

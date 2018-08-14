@@ -21,8 +21,6 @@ abstract class AppModule {
     abstract fun bindContext(application: Application): Context
 
     @Singleton
-    @Provides
-    fun providerSchedulerProvider(): SchedulerProvider {
-        return AppSchedulerProvider()
-    }
+    @Binds
+    abstract fun providerSchedulerProvider(appSchedulerProvider: AppSchedulerProvider): SchedulerProvider
 }

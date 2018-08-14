@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import vn.linh.imageapp.R
 import vn.linh.imageapp.data.model.Image
-import vn.linh.imageapp.screen.base.BaseActivity
+import vn.linh.imageapp.screen.BaseActivity
 import vn.linh.imageapp.utils.constant.EXTRA_IMAGE
 
 class ImageDetailActivity : BaseActivity() {

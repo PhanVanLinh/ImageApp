@@ -1,6 +1,7 @@
 package vn.linh.imageapp.data.source.remote.api
 
 import io.reactivex.Single
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -16,7 +17,7 @@ import vn.linh.imageapp.data.source.remote.api.response.LoginResponse
 interface PhotoApi {
 
     @POST("/login")
-    fun login(@Body userName: LoginRequest): Single<LoginResponse>
+    fun login(@Body userName: RequestBody): Single<LoginResponse>
 
     @GET("/image")
     fun getImage(): Single<List<Image>>

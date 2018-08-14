@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import vn.linh.imageapp.R
 import vn.linh.imageapp.data.model.Image
 import vn.linh.imageapp.navigation.Navigator
-import vn.linh.imageapp.screen.base.BaseActivity
+import vn.linh.imageapp.screen.BaseActivity
 import vn.linh.imageapp.screen.image.adapter.ImageAdapter
 import java.util.*
 import javax.inject.Inject
@@ -46,7 +46,7 @@ class ImageActivity : BaseActivity(), ImageContract.View {
     }
 
     fun login() {
-        presenter.login("ABC")
+        presenter.login("wizeline")
     }
 
     fun getData(): MutableList<Image> {

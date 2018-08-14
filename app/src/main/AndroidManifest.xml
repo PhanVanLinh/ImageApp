@@ -12,14 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="vn.linh.imageapp.screen.image.ImageActivity">
+        <activity
+            android:name=".screen.splash.SplashActivity"
+            android:theme="@style/Theme.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="vn.linh.imageapp.screen.imagedetail.ImageDetailActivity"></activity>
+        <activity android:name=".screen.image.ImageActivity">
+
+        </activity>
+        <activity android:name=".screen.imagedetail.ImageDetailActivity" />
     </application>
 
 </manifest>

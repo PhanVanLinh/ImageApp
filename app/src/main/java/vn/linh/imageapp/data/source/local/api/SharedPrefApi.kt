@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
 class SharedPrefApi @Inject constructor(context: Context, private val gson: Gson) {
 
     companion object {
-        const val LAST_KNOWN_BLOCK_HEIGHT = "last_known_block_height"
+        const val ACCESS_TOKEN = "ACCESS_TOKEN"
     }
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
