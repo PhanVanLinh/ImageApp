@@ -1,7 +1,10 @@
 package vn.linh.imageapp.screen.imagedetail
 
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import vn.linh.imageapp.R
 import vn.linh.imageapp.data.model.Image
@@ -10,16 +13,21 @@ import vn.linh.imageapp.utils.common.ImageLoader
 import vn.linh.imageapp.utils.constant.EXTRA_IMAGE
 import javax.inject.Inject
 
+const val DESCRIPTION_SHOWING_TIME = 2000L
+
 class ImageDetailActivity : BaseActivity() {
-    lateinit var tvTitle: TextView
-    lateinit var tvDescription: TextView
-    lateinit var tvCreatedDate: TextView
-    lateinit var tvView: TextView
-    lateinit var ivMain: ImageView
+    private lateinit var tvTitle: TextView
+    private lateinit var tvDescription: TextView
+    private lateinit var tvCreatedDate: TextView
+    private lateinit var tvView: TextView
+    private lateinit var ivMain: ImageView
+    private lateinit var loDescription: LinearLayout
     var image: Image? = null
 
     @Inject
     lateinit var imageLoader: ImageLoader
+
+    private var layoutDescriptionVisibleHandler: Handler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +35,7 @@ class ImageDetailActivity : BaseActivity() {
         initView()
         getDataFromIntent()
         updateView()
-
+        scheduleHideDescriptionView()
     }
 
     override fun initView() {
@@ -36,6 +44,11 @@ class ImageDetailActivity : BaseActivity() {
         tvCreatedDate = findViewById(R.id.text_created_date)
         tvView = findViewById(R.id.text_view)
         ivMain = findViewById(R.id.image_main)
+        loDescription = findViewById(R.id.layout_description)
+
+        ivMain.setOnClickListener {
+            scheduleHideDescriptionView()
+        }
     }
 
     override fun getDataFromIntent() {
@@ -52,5 +65,13 @@ class ImageDetailActivity : BaseActivity() {
         }
     }
 
-
+    private fun scheduleHideDescriptionView() {
+        if (layoutDescriptionVisibleHandler == null) {
+            layoutDescriptionVisibleHandler = Handler()
+        }
+        loDescription.visibility = View.VISIBLE
+        layoutDescriptionVisibleHandler?.postDelayed({
+            loDescription.visibility = View.GONE
+        }, DESCRIPTION_SHOWING_TIME)
+    }
 }

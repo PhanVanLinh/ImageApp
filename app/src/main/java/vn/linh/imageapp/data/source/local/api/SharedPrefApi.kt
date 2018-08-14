@@ -17,14 +17,19 @@ class SharedPrefApi @Inject constructor(context: Context, private val gson: Gson
             Context.MODE_PRIVATE)
 
 
-    fun <T : Any> get(key: String, type: KClass<T>): T {
+    fun <T : Any> get(key: String, type: KClass<T>): T? {
         return when (type) {
             String::class -> sharedPreferences.getString(key, "") as T
             Boolean::class -> sharedPreferences.getBoolean(key, false) as T
             Float::class -> sharedPreferences.getFloat(key, 0f) as T
             Int::class -> sharedPreferences.getInt(key, 0) as T
             Long::class -> sharedPreferences.getLong(key, 0) as T
-            else -> gson.fromJson(sharedPreferences.getString(key, ""), type.java)
+            else -> {
+                if(sharedPreferences.getString(key, "") == ""){
+                    return null
+                }
+                return gson.fromJson(sharedPreferences.getString(key, ""), type.java)
+            }
         }
     }
 

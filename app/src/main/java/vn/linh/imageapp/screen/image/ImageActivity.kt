@@ -3,6 +3,8 @@ package vn.linh.imageapp.screen.image
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.ProgressBar
 import vn.linh.imageapp.R
 import vn.linh.imageapp.data.model.Image
 import vn.linh.imageapp.navigation.Navigator
@@ -26,6 +28,8 @@ class ImageActivity : BaseActivity(), ImageContract.View {
     @Inject
     lateinit var navigator: Navigator
 
+    lateinit var pbLoading: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
@@ -37,6 +41,7 @@ class ImageActivity : BaseActivity(), ImageContract.View {
 
     override fun initView() {
         rvImage = findViewById(R.id.recycler_view_image)
+        pbLoading = findViewById(R.id.progress_bar_loading)
     }
 
     private fun initRecyclerView() {
@@ -49,7 +54,7 @@ class ImageActivity : BaseActivity(), ImageContract.View {
         }, imageLoader)
 
         rvImage.adapter = imageAdapter
-      //  imageAdapter?.submitList(getData())
+        //  imageAdapter?.submitList(getData())
     }
 
     override fun onGetImageSuccess(images: List<Image>) {
@@ -57,6 +62,14 @@ class ImageActivity : BaseActivity(), ImageContract.View {
     }
 
     override fun onGetImageFailed(exception: Throwable) {
+    }
+
+    override fun showLoading() {
+        pbLoading.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        pbLoading.visibility = View.INVISIBLE
     }
 
     fun getImage() {

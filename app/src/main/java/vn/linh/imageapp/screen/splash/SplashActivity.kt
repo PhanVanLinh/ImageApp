@@ -22,7 +22,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
+        initView()
         splashPresenter.login(BuildConfig.DEFAULT_USER)
     }
 
@@ -40,6 +40,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
 
     override fun onLoginSuccess() {
         navigator.startImageScreen(this)
+        finish()
     }
 
     override fun onLoginFailed() {

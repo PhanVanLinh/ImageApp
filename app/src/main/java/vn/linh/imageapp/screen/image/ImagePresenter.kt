@@ -19,6 +19,12 @@ class ImagePresenter @Inject constructor(private val userRepository: UserReposit
 
     override fun getImage() {
         imageRepository.getImage()
+                .doOnSubscribe {
+                    view.showLoading()
+                }
+                .doAfterTerminate {
+                    view.hideLoading()
+                }
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui()).subscribe({
                     view.onGetImageSuccess(it)

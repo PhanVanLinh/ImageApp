@@ -15,6 +15,9 @@ interface ImageContract {
 
         fun onGetImageFailed(exception: Throwable)
 
+        fun showLoading()
+
+        fun hideLoading()
     }
 
     interface Presenter {

@@ -11,6 +11,12 @@ class SplashPresenter @Inject constructor(val userRepository: UserRepository, va
 
     override fun login(userName: String) {
         userRepository.login(userName)
+                .doOnSubscribe {
+                    view.showLoading()
+                }
+                .doAfterTerminate {
+                    view.hideLoading()
+                }
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui()).subscribe({
                     view.onLoginSuccess()
