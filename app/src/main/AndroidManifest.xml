@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="vn.linh.wizelinephoto">
+    package="vn.linh.imageapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="vn.linh.PhotoApp"
+        android:name="vn.linh.ImageAppllication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screen.image.ImageActivity">
+        <activity android:name="vn.linh.imageapp.screen.image.ImageActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screen.imagedetail.ImageDetailActivity">
-        </activity>
+        <activity android:name="vn.linh.imageapp.screen.imagedetail.ImageDetailActivity"></activity>
     </application>
 
 </manifest>
