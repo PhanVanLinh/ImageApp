@@ -17,17 +17,23 @@ import java.util.*
 @Parcelize
 data class Image(
         @Expose
-        val title: String,
+        val title: String?,
         @Expose
-        val description: String,
+        val description: String?,
         @Expose
         val datetime: Long,
         @Expose
         @SerializedName("link")
-        val thumbnail: String
+        val thumbnail: String,
+        @SerializedName("views")
+        val views: Int
 ) : Parcelable {
 
     fun getDisplayTime(context: Context): String? {
         return datetime.toTimeString(context.getString(R.string.format_yyyy_MM_dd_HH_mm_ss))
+    }
+
+    fun getDisplayView(context: Context): String? {
+        return ""+views+" "+context.getString(R.string.views)
     }
 }

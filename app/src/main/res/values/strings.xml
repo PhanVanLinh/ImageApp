@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">WizelinePhoto</string>
+    <string name="app_name">Image App</string>
+
+    <string name="views">views</string>
 </resources>
