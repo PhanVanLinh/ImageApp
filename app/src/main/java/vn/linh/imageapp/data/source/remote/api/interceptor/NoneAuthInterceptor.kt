@@ -10,7 +10,7 @@ import javax.inject.Inject
  * phanvanlinh.94vn@gmail.com
  */
 
-class AuthInterceptor @Inject constructor(private val accessTokenWrapper: AccessTokenWrapper) : Interceptor {
+class NoneAuthInterceptor @Inject constructor(private val accessTokenWrapper: AccessTokenWrapper) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()

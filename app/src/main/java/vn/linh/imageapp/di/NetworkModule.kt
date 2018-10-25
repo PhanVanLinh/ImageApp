@@ -11,8 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.linh.imageapp.BuildConfig
-import vn.linh.imageapp.data.model.AccessToken
-import vn.linh.imageapp.data.source.UserRepository
+import vn.linh.imageapp.data.AccessTokenWrapper
 import vn.linh.imageapp.data.source.local.api.SharedPrefApi
 import vn.linh.imageapp.data.source.remote.api.AuthImageApi
 import vn.linh.imageapp.data.source.remote.api.interceptor.AuthInterceptor
@@ -38,10 +37,15 @@ class NetworkModule {
 
     @Singleton
     @Provides
+    fun provideAccessTokenWrapper(sharedPrefApi: SharedPrefApi): AccessTokenWrapper {
+        return AccessTokenWrapper(sharedPrefApi)
+    }
+
+    @Singleton
+    @Provides
     @Named("auth")
-    fun provideAuthInterceptor(sharedPrefApi: SharedPrefApi): Interceptor {
-        val accessToken = sharedPrefApi.get(SharedPrefApi.ACCESS_TOKEN, AccessToken::class)
-        return AuthInterceptor(accessToken)
+    fun provideAuthInterceptor(accessTokenWrapper: AccessTokenWrapper): Interceptor {
+        return AuthInterceptor(accessTokenWrapper)
     }
 
     @Singleton
